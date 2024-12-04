@@ -1,4 +1,6 @@
 import Square from "./Square";
+import useSound from "use-sound";
+import cheering from "../assets/sounds/cheering.mp3";
 
 interface Props {
 	values: string[][];
@@ -7,7 +9,14 @@ interface Props {
 	setIsX: (x: boolean) => void;
 	hasWon: boolean;
 }
-export default function Board({ values, setValues, isX, setIsX, hasWon }: Props) {
+
+export default function Board({
+	values,
+	setValues,
+	isX,
+	setIsX,
+	hasWon,
+}: Props) {
 	function updater(row: number, column: number) {
 		function helper() {
 			const valuesCopy = values.map((x) => x.slice(), values);
@@ -19,6 +28,9 @@ export default function Board({ values, setValues, isX, setIsX, hasWon }: Props)
 		}
 		return helper;
 	}
+
+	const [playSound] = useSound(cheering, { volume: 0.5 });
+	hasWon ? playSound() : null;
 
 	return (
 		<>
