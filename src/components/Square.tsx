@@ -9,7 +9,7 @@ interface Props {
 
 export default function Square({ value, updateValue, hasWon }: Props) {
 	const [playSound] = useSound(click, {
-		volume: 0.7,
+		volume: 0.8,
 	});
 
 	return (

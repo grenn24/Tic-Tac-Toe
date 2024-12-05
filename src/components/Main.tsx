@@ -63,6 +63,17 @@ export default function main() {
 		}
 	}
 
+	function checkTie(board: string[][]) {
+		for (let i = 0; i < 3; i++) {
+			for (let j = 0; j < 3; j++) {
+				if (board[i][j] === "") {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	function addValue(x: string[][]) {
 		const valueCopy = values.map((x) => x.map((y) => y.slice()));
 		valueCopy[valueCopy.length] = x;
@@ -101,6 +112,7 @@ export default function main() {
 					<PlayerIndicator
 						isX={isX}
 						hasWon={checkWin(values[values.length - 1])}
+						hasTied={checkTie(values[values.length - 1])}
 						nextRound={nextRound}
 					/>
 				</div>
